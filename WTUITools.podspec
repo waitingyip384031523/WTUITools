@@ -47,6 +47,7 @@ TODO: Add long description of the pod here.
   s.subspec 'ChatMessageView' do |cmView|
       cmView.source_files = 'WTUITools/Classes/ChatMessageView/*.{h,m}'
       cmView.dependency 'WTUITools/UIView'
+      cmView.dependency 'WTUITools/UIImage'
   end
 
   s.subspec 'FlowLayout' do |fl|

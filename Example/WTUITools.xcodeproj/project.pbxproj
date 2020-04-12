@@ -38,7 +38,7 @@
 
 /* Begin PBXFileReference section */
 		0061F7CA26C245E0BF4FF606 /* Pods-WTUITools_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WTUITools_Tests.release.xcconfig"; path = "Target Support Files/Pods-WTUITools_Tests/Pods-WTUITools_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		0B2DE4AAA85D4A1C33965E53 /* WTUITools.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = WTUITools.podspec; path = ../WTUITools.podspec; sourceTree = "<group>"; };
+		0B2DE4AAA85D4A1C33965E53 /* WTUITools.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = WTUITools.podspec; path = ../WTUITools.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		20F3ED1BEEF33E783D7E5050 /* Pods-WTUITools_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WTUITools_Example.debug.xcconfig"; path = "Target Support Files/Pods-WTUITools_Example/Pods-WTUITools_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* WTUITools_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WTUITools_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -63,9 +63,9 @@
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		946749B9EAEE74D06531FE2E /* Pods_WTUITools_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WTUITools_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9984EC163E2419CD5C3DD806 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		9984EC163E2419CD5C3DD806 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C6BFA1548CDD58ED70E97668 /* Pods-WTUITools_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WTUITools_Tests.debug.xcconfig"; path = "Target Support Files/Pods-WTUITools_Tests/Pods-WTUITools_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		D614E61E4BFD12F0E1C7B625 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		D614E61E4BFD12F0E1C7B625 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		ED654F586CEB5C9F9DBA3CCD /* Pods_WTUITools_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WTUITools_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -103,7 +103,6 @@
 				C6BFA1548CDD58ED70E97668 /* Pods-WTUITools_Tests.debug.xcconfig */,
 				0061F7CA26C245E0BF4FF606 /* Pods-WTUITools_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -258,6 +257,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);

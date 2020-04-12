@@ -1,6 +1,6 @@
 //
 //  UILabel+NumberLines.m
-//  EliteShow
+//  Wt.Yip
 //
 //  Created by Elite Show on 2018/9/28.
 //  Copyright © 2018 Elite Show. All rights reserved.

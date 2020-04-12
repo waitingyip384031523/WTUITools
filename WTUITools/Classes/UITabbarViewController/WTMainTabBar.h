@@ -7,7 +7,7 @@
 //
 
 @class WTMainTabBar;
-@class YHMainTabBarController;
+@class WTMainTabBarController;
 
 @protocol WTMainTabBarDataSource <NSObject>
 
@@ -26,7 +26,7 @@
 
 @interface WTMainTabBar : UIView
 
-- (instancetype _Nullable )initWithController:(YHMainTabBarController *_Nullable)controller;
+- (instancetype _Nullable )initWithController:(WTMainTabBarController *_Nullable)controller;
 
 @property (nonatomic, weak, nullable) id<WTMainTabBarDataSource> dataSource;
 

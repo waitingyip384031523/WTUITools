@@ -1,9 +1,9 @@
 //
 //  UIButton+EnlargeTouchAre.h
-//  EliteShow
+//  Wt.Yip
 //
 //  Created by Wt.Yip on 2018/2/26.
-//  Copyright © 2018年 EliteShow. All rights reserved.
+//  Copyright © 2018年 Wt.Yip. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

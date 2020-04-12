@@ -1,9 +1,9 @@
 //
 //  UITextView+PlaceHolder.h
-//  EliteShow
+//  Wt.Yip
 //
 //  Created by Wt.Yip on 2018/5/28.
-//  Copyright © 2018年 EliteShow. All rights reserved.
+//  Copyright © 2018年 Wt.Yip. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

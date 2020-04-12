@@ -11,7 +11,7 @@
 
 @interface WTCountButton()
 
-@property (nonatomic, strong) YHCountButtonStyle *style;
+@property (nonatomic, strong) WTCountButtonStyle *style;
 
 @end
 
@@ -19,10 +19,10 @@
 
 + (instancetype)countBtn
 {
-    return [[WTCountButton alloc] initWithStyle:[YHCountButtonStyle defaultStyle]];
+    return [[WTCountButton alloc] initWithStyle:[WTCountButtonStyle defaultStyle]];
 }
 
-- (instancetype)initWithStyle:(YHCountButtonStyle *)style
+- (instancetype)initWithStyle:(WTCountButtonStyle *)style
 {
     self = [super initWithImagePosition:WTButtonText andMargin:0];
     if (self) {

@@ -1,6 +1,6 @@
 //
 //  UILabel+CopyLabel.h
-//  EliteShow
+//  Wt.Yip
 //
 //  Created by Waiting.Y on 2019/5/31.
 //  Copyright © 2019年 Elite Show. All rights reserved.

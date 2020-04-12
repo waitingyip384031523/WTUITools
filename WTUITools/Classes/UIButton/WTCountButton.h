@@ -7,13 +7,13 @@
 //
 
 #import "WTButton.h"
-#import "YHCountButtonStyle.h"
+#import "WTCountButtonStyle.h"
 
 typedef void(^TouchBlock)(id x);
 
 @interface WTCountButton : WTButton
 
-- (instancetype)initWithStyle:(YHCountButtonStyle *)style;
+- (instancetype)initWithStyle:(WTCountButtonStyle *)style;
 + (instancetype)countBtn;
 - (void)openCountdown;
 

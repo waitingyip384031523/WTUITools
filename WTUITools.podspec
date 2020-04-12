@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'WTUITools'
-  s.version          = '1.0'
+  s.version          = '1.0.1'
   s.summary          = 'A short description of WTUITools.'
 
 # This description is used to generate tags and improve search results.
@@ -46,6 +46,7 @@ TODO: Add long description of the pod here.
   
   s.subspec 'ChatMessageView' do |cmView|
       cmView.source_files = 'WTUITools/Classes/ChatMessageView/**/*.{h,m}'
+      cmView.dependency 'WTUITools/Classes/UIView'
   end
   
   s.subspec 'FlowLayout' do |fl|
@@ -62,6 +63,7 @@ TODO: Add long description of the pod here.
   
   s.subspec 'UIButton' do |button|
       button.source_files = 'WTUITools/Classes/UIButton/**/*.{h,m}'
+      button.dependency 'WTUITools/Classes/UIImage'
   end
   
   s.subspec 'UIColor' do |color|
@@ -70,6 +72,7 @@ TODO: Add long description of the pod here.
   
   s.subspec 'UIImage' do |image|
       image.source_files = 'WTUITools/Classes/UIImage/**/*.{h,m}'
+      image.dependency 'WTUITools/Classes/UIColor'
   end
   
   s.subspec 'UILabel' do |label|
@@ -82,6 +85,7 @@ TODO: Add long description of the pod here.
   
   s.subspec 'UITabbarViewController' do |tb|
       tb.source_files = 'WTUITools/Classes/UITabbarViewController/**/*.{h,m}'
+      tb.dependency 'WTUITools/Classes/UIButton'
   end
   
   s.subspec 'UITableViewIndex' do |tbi|

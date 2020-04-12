@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "WTMainTabBar.h"
-#import "YHMainTabBarItem.h"
+#import "WTMainTabBarItem.h"
 
 @class EHRotateButtonView;
 

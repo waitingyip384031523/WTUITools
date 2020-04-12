@@ -7,9 +7,9 @@
 //
 
 #import "WTMainTabBar.h"
-#import "YHMainTabBarItem.h"
-#import "YHMainTabBarController.h"
-#import "YHSelectedButton.h"
+#import "WTMainTabBarItem.h"
+#import "WTMainTabBarController.h"
+#import "WTSelectedButton.h"
 
 @interface WTMainTabBar()
 
@@ -30,7 +30,7 @@
 
 @implementation WTMainTabBar
 
-- (instancetype)initWithController:(YHMainTabBarController *)controller
+- (instancetype)initWithController:(WTMainTabBarController *)controller
 {
     self = [super initWithFrame:CGRectZero];
     if (self) {
@@ -137,12 +137,12 @@
         
         startPositionLeft -= self.tabBarItemEdgeInsets.right;
         
-        YHMainTabBarItem *item = reverseArrayLeft[i];
+        WTMainTabBarItem *item = reverseArrayLeft[i];
         UIImage *image = item.itemImage;
         UIImage *selectImage = item.selectedImage;
         NSString *title = item.title;
         
-        YHSelectedButton *button = [[YHSelectedButton alloc] initWithImagePosition:YHButtonImageTop andMargin:2];
+        WTSelectedButton *button = [[WTSelectedButton alloc] initWithImagePosition:WTButtonImageTop andMargin:2];
         button.frame = CGRectMake(buttonOringinX, buttonOringinY, buttonWidth, buttonHeight);
         [button addTarget:self action:@selector(didTapBarItem:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -184,12 +184,12 @@
         
         startPositionRight = buttonOriginX + maxWidthForRightBarButtonItem + rightOffset;
         
-        YHMainTabBarItem *item = rightTabBarItems[i];
+        WTMainTabBarItem *item = rightTabBarItems[i];
         UIImage *image = item.itemImage;
         UIImage *selectImage = item.selectedImage;
         NSString *title = item.title;
         
-        YHSelectedButton *button = [[YHSelectedButton alloc] initWithImagePosition:YHButtonImageTop andMargin:2];
+        WTSelectedButton *button = [[WTSelectedButton alloc] initWithImagePosition:WTButtonImageTop andMargin:2];
         button.frame = CGRectMake(buttonOriginX, buttonOriginY, buttonWidth, buttonHeight);
         
         if (numberOfLeftItems == 1) {
@@ -220,11 +220,11 @@
     NSArray *leftTabBarItems = [self.dataSource leftTabBarItemsInTabBarView:self];
     NSArray *rightTabBarItems = [self.dataSource rightTabBarItemsInTabBarView:self];
     
-    for (YHMainTabBarItem *item in leftTabBarItems) {
+    for (WTMainTabBarItem *item in leftTabBarItems) {
         [tempMutableArrayOfBarItems addObject:item];
     }
     
-    for (YHMainTabBarItem *item in rightTabBarItems) {
+    for (WTMainTabBarItem *item in rightTabBarItems) {
         [tempMutableArrayOfBarItems addObject:item];
     }
     
@@ -235,18 +235,18 @@
     NSMutableArray *tempArray = [NSMutableArray array];
     NSMutableArray *reverseArray = [NSMutableArray arrayWithCapacity:[self.leftButtonsArray count]];
     
-    for (YHSelectedButton *button in [self.leftButtonsArray reverseObjectEnumerator]) {
+    for (WTSelectedButton *button in [self.leftButtonsArray reverseObjectEnumerator]) {
         [reverseArray addObject:button];
     }
     
-    for (YHSelectedButton *button in [reverseArray arrayByAddingObjectsFromArray:self.rightButtonsArray]) {
+    for (WTSelectedButton *button in [reverseArray arrayByAddingObjectsFromArray:self.rightButtonsArray]) {
         [tempArray addObject:button];
     }
     
     self.allAdditionalButtons = [tempArray copy];
     
     for (int i = 0; i < self.allAdditionalButtons.count; i++) {
-        YHSelectedButton *button = self.allAdditionalButtons[i];
+        WTSelectedButton *button = self.allAdditionalButtons[i];
         if (i == self.selectedTabBarItemIndex) {
             button.selected = YES;
         }else{

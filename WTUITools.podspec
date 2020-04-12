@@ -32,9 +32,30 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'WTUITools/Classes/**/*'
   
+  s.default_subspec = 'Core'
+  
   s.resource_bundles = {
     'WTUITools' => ['WTUITools/Assets/*.png']
   }
+  
+  s.subspec 'Core' do |core|
+      core.dependency 'WTUITools/BadgeView'
+      core.dependency 'WTUITools/CALayer'
+      core.dependency 'WTUITools/ChatMessageView'
+      core.dependency 'WTUITools/FlowLayout'
+      core.dependency 'WTUITools/TagView'
+      core.dependency 'WTUITools/UIAlertController'
+      core.dependency 'WTUITools/UIButton'
+      core.dependency 'WTUITools/UIColor'
+      core.dependency 'WTUITools/UIImage'
+      core.dependency 'WTUITools/UILabel'
+      core.dependency 'WTUITools/UINavigationbar'
+      core.dependency 'WTUITools/UITabbarViewController'
+      core.dependency 'WTUITools/UITableViewIndex'
+      core.dependency 'WTUITools/UITextView'
+      core.dependency 'WTUITools/UIView'
+      core.dependency 'WTUITools/UIWindow'
+  end
   
   s.subspec 'BadgeView' do |bdgView|
       bdgView.source_files = 'WTUITools/Classes/BadgeView/*.{h,m}'

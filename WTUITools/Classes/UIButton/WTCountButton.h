@@ -1,17 +1,17 @@
 //
 //  YHCountButton.h
-//  EliteShow
+//  Wt.Yip
 //
 //  Created by Wt.Yip on 2018/1/4.
-//  //  Copyright © 2018年 EliteShow. All rights reserved.
+//  //  Copyright © 2018年 Wt.Yip. All rights reserved.
 //
 
-#import "YHButton.h"
+#import "WTButton.h"
 #import "YHCountButtonStyle.h"
 
 typedef void(^TouchBlock)(id x);
 
-@interface YHCountButton : YHButton
+@interface WTCountButton : WTButton
 
 - (instancetype)initWithStyle:(YHCountButtonStyle *)style;
 + (instancetype)countBtn;

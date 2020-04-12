@@ -1,17 +1,17 @@
 //
 //  YHTabBar.m
-//  HowKong
+//  Wt.Yip
 //
 //  Created by Wt.Yip on 2017/7/27.
-//  Copyright © 2018年 EliteShow. All rights reserved.
+//  Copyright © 2018年 Wt.Yip. All rights reserved.
 //
 
-#import "YHMainTabBar.h"
+#import "WTMainTabBar.h"
 #import "YHMainTabBarItem.h"
 #import "YHMainTabBarController.h"
 #import "YHSelectedButton.h"
 
-@interface YHMainTabBar()
+@interface WTMainTabBar()
 
 @property (nonatomic, strong) NSArray   *allBarItems;
 @property (nonatomic, strong) UIView    *topLine;
@@ -28,14 +28,14 @@
 
 @end
 
-@implementation YHMainTabBar
+@implementation WTMainTabBar
 
 - (instancetype)initWithController:(YHMainTabBarController *)controller
 {
     self = [super initWithFrame:CGRectZero];
     if (self) {
-        _delegate = (id<YHMainTabBarDelegate>)controller;
-        _dataSource = (id<YHMainTabBarDataSource>)controller;
+        _delegate = (id<WTMainTabBarDelegate>)controller;
+        _dataSource = (id<WTMainTabBarDataSource>)controller;
     }
     return self;
 }

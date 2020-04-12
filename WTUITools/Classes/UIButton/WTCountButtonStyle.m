@@ -1,12 +1,12 @@
 //
 //  YHCountButtonStyle.m
-//  EliteShow
+//  Wt.Yip
 //
 //  Created by Wt.Yip on 2018/1/4.
-//  //  Copyright © 2018年 EliteShow. All rights reserved.
+//  //  Copyright © 2018年 Wt.Yip. All rights reserved.
 //
 
-#import "YHCountButtonStyle.h"
+#import "WTCountButtonStyle.h"
 
 #define UNSELECT_BTN_TEXT_COLOR UIColorFromRGB(0x9c9a94)
 
@@ -17,11 +17,11 @@
 
 #define SEND                    @"发送"
 
-@implementation YHCountButtonStyle
+@implementation WTCountButtonStyle
 
 + (instancetype)defaultStyle
 {
-    YHCountButtonStyle *defaultStyle = [[YHCountButtonStyle alloc] init];
+    WTCountButtonStyle *defaultStyle = [[WTCountButtonStyle alloc] init];
     defaultStyle.normalTitle = RESEND_VERIFY_CODE;
     defaultStyle.unSelectTitle = RESEND_VERIFY_CODE;
 //    defaultStyle.normalBgColor = COMMON_BTN_HIGHLIGHT_COLOR;
@@ -36,7 +36,7 @@
 
 + (instancetype)userInfoStyle
 {
-    YHCountButtonStyle *userInfoStyle = [[YHCountButtonStyle alloc] init];
+    WTCountButtonStyle *userInfoStyle = [[WTCountButtonStyle alloc] init];
     userInfoStyle.normalTitle = SEND;
     userInfoStyle.unSelectTitle = RESEND_VERIFY_CODE;
 //    userInfoStyle.normalBgColor = MAIN_COLOR;

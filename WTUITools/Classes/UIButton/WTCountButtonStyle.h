@@ -1,14 +1,14 @@
 //
 //  YHCountButtonStyle.h
-//  EliteShow
+//  Wt.Yip
 //
 //  Created by Wt.Yip on 2018/1/4.
-//  //  Copyright © 2018年 EliteShow. All rights reserved.
+//  //  Copyright © 2018年 Wt.Yip. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface YHCountButtonStyle : NSObject
+@interface WTCountButtonStyle : NSObject
 
 @property (nonatomic, copy  ) NSString  *normalTitle;
 @property (nonatomic, copy  ) NSString  *unSelectTitle;

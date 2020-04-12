@@ -1,18 +1,18 @@
 //
 //  YHTabBarController.m
-//  HowKong
+//  Wt.Yip
 //
 //  Created by Wt.Yip on 2017/7/27.
-//  Copyright © 2018年 EliteShow. All rights reserved.
+//  Copyright © 2018年 Wt.Yip. All rights reserved.
 //
 
-#import "YHMainTabBarController.h"
+#import "WTMainTabBarController.h"
 
-@interface YHMainTabBarController ()<YHMainTabBarDataSource,YHMainTabBarDelegate>
+@interface WTMainTabBarController ()<WTMainTabBarDataSource,WTMainTabBarDelegate>
 
 @end
 
-@implementation YHMainTabBarController
+@implementation WTMainTabBarController
 
 - (instancetype)init
 {
@@ -98,12 +98,12 @@
         [view removeFromSuperview];
     }
     
-    self.tabBarView = [[YHMainTabBar alloc] initWithController:self];
+    self.tabBarView = [[WTMainTabBar alloc] initWithController:self];
     [self.tabBar addSubview:self.tabBarView];
 }
 
 #pragma mark - YHTabBarViewDelegate
-- (BOOL)tabBar:(YHMainTabBar *)tabBar shouldSelectItemAtIndex:(NSUInteger)index
+- (BOOL)tabBar:(WTMainTabBar *)tabBar shouldSelectItemAtIndex:(NSUInteger)index
 {
     UIViewController *viewControllerToSelect = self.viewControllers[index];
     
@@ -118,23 +118,23 @@
     return selectionAllowed;
 }
 
-- (void)tabBar:(YHMainTabBar *)tabBar didSelectItemAtIndex:(NSUInteger)index
+- (void)tabBar:(WTMainTabBar *)tabBar didSelectItemAtIndex:(NSUInteger)index
 {
     self.selectedViewController = self.viewControllers[index];
 }
 
 #pragma mark - YHTabBarViewDataSource
-- (NSArray *)leftTabBarItemsInTabBarView:(YHMainTabBar *)tabBarView
+- (NSArray *)leftTabBarItemsInTabBarView:(WTMainTabBar *)tabBarView
 {
     return self.leftBarItems;
 }
 
-- (NSArray *)rightTabBarItemsInTabBarView:(YHMainTabBar *)tabBarView
+- (NSArray *)rightTabBarItemsInTabBarView:(WTMainTabBar *)tabBarView
 {
     return self.rightBarItems;
 }
 
-- (UIView *)centerViewInTabBar:(YHMainTabBar *)tabBarView
+- (UIView *)centerViewInTabBar:(WTMainTabBar *)tabBarView
 {
     return self.centerView;
 }

@@ -1,12 +1,12 @@
 //
 //  YHMainTabBarItem.h
-//  HowKong
+//  Wt.Yip
 //
 //  Created by Wt.Yip on 2017/7/27.
-//  Copyright © 2018年 EliteShow. All rights reserved.
+//  Copyright © 2018年 Wt.Yip. All rights reserved.
 //
 
-@interface YHMainTabBarItem : UIView
+@interface WTMainTabBarItem : UIView
 
 @property (nonatomic, strong, nullable) UIImage     *itemImage;
 @property (nonatomic, strong, nullable) UIImage     *selectedImage;

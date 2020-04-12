@@ -3,30 +3,30 @@
 //  TempButton
 //
 //  Created by Wt.Yip on 2017/7/31.
-//  Copyright © 2018年 EliteShow. All rights reserved.
+//  Copyright © 2018年 Wt.Yip. All rights reserved.
 //
 
-#import "YHButton.h"
+#import "WTButton.h"
 #import "UIButton+EnlargeTouchAre.h"
 
-@interface YHButton()
+@interface WTButton()
 
 @end
 
-@implementation YHButton
+@implementation WTButton
 
 + (instancetype)buttonWithType:(UIButtonType)type
-              andImagePosition:(YHButtonImagePosition)postion
+              andImagePosition:(WTButtonImagePosition)postion
                      andMargin:(CGFloat)margin
 {
-    YHButton *button = [YHButton buttonWithType:type];
+    WTButton *button = [WTButton buttonWithType:type];
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     button.position = postion;
     button.margin = margin;
     return button;
 }
 
-- (instancetype)initWithImagePosition:(YHButtonImagePosition)position andMargin:(CGFloat)margin
+- (instancetype)initWithImagePosition:(WTButtonImagePosition)position andMargin:(CGFloat)margin
 {
     self = [super init];
     if (self) {
@@ -52,7 +52,7 @@
     CGFloat commonTop = (self.frame.size.height - imageSize.height - labelSize.height - self.margin) / 2;
     CGFloat commonLeft = (self.frame.size.width - imageSize.width - labelSize.width - self.margin) / 2;
     switch (self.position) {
-        case YHButtonImageTop:
+        case WTButtonImageTop:
         {
             imageRect.origin = CGPointMake((self.frame.size.width - imageSize.width) / 2, commonTop);
             labelRect.origin = CGPointMake(0, CGRectGetMaxY(imageRect) + self.margin);
@@ -60,7 +60,7 @@
             [self.titleLabel setTextAlignment:NSTextAlignmentCenter];
         }
             break;
-        case YHButtonImageLeft:
+        case WTButtonImageLeft:
         {
             imageRect.origin = CGPointMake(commonLeft, imageRect.origin.y);
             labelRect.origin = CGPointMake(CGRectGetMaxX(imageRect) + self.margin, labelRect.origin.y);
@@ -70,7 +70,7 @@
             [self.titleLabel setTextAlignment:NSTextAlignmentLeft];
         }
             break;
-        case YHButtonImageBottom:
+        case WTButtonImageBottom:
         {
             labelRect.origin = CGPointMake(0, commonTop);
             imageRect.origin = CGPointMake((self.frame.size.width - imageRect.size.width) / 2, CGRectGetMaxY(labelRect) + self.margin);
@@ -78,24 +78,24 @@
             [self.titleLabel setTextAlignment:NSTextAlignmentCenter];
         }
             break;
-        case YHButtonImageBottomRight:
+        case WTButtonImageBottomRight:
         {
             labelRect.origin = CGPointMake(commonLeft, labelRect.origin.y);
             imageRect.origin = CGPointMake(CGRectGetMaxX(labelRect) + self.margin, CGRectGetMaxY(labelRect) - imageSize.height - 1.f);
         }
             break;
-        case YHButtonImageRight:
+        case WTButtonImageRight:
         {
             labelRect.origin = CGPointMake(commonLeft, labelRect.origin.y);
             imageRect.origin = CGPointMake(CGRectGetMaxX(labelRect) + self.margin, imageRect.origin.y);
         }
             break;
-        case YHButtonText:
+        case WTButtonText:
         {
             labelRect.origin = CGPointMake((self.frame.size.width - labelSize.width) / 2, (self.frame.size.height - labelSize.height)/2);
         }
             break;
-        case YHButtonImage:
+        case WTButtonImage:
         {
             imageRect.origin = CGPointMake((self.frame.size.width - imageSize.width) / 2, (self.frame.size.height - imageSize.height)/2);
         }

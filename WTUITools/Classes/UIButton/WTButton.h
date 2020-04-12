@@ -3,32 +3,32 @@
 //  TempButton
 //
 //  Created by Wt.Yip on 2017/7/31.
-//  Copyright © 2018年 EliteShow. All rights reserved.
+//  Copyright © 2018年 Wt.Yip. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 typedef enum : NSUInteger {
-    YHButtonText,
-    YHButtonImage,
-    YHButtonImageTop,
-    YHButtonImageLeft,
-    YHButtonImageBottom,
-    YHButtonImageBottomRight,
-    YHButtonImageRight
-} YHButtonImagePosition;
+    WTButtonText,
+    WTButtonImage,
+    WTButtonImageTop,
+    WTButtonImageLeft,
+    WTButtonImageBottom,
+    WTButtonImageBottomRight,
+    WTButtonImageRight
+} WTButtonImagePosition;
 
-@interface YHButton : UIButton
+@interface WTButton : UIButton
 
 + (instancetype)buttonWithType:(UIButtonType)type
-              andImagePosition:(YHButtonImagePosition)postion
+              andImagePosition:(WTButtonImagePosition)postion
                      andMargin:(CGFloat)margin;
 
-- (instancetype)initWithImagePosition:(YHButtonImagePosition)position
+- (instancetype)initWithImagePosition:(WTButtonImagePosition)position
                             andMargin:(CGFloat)margin;
 
 // 位置
-@property (nonatomic, assign) YHButtonImagePosition position;
+@property (nonatomic, assign) WTButtonImagePosition position;
 // 間隔
 @property (nonatomic, assign) CGFloat               margin;
 // 放大点击区域范围

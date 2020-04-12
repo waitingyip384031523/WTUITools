@@ -1,30 +1,30 @@
 //
 //  YHCountButton.m
-//  EliteShow
+//  Wt.Yip
 //
 //  Created by Wt.Yip on 2018/1/4.
-//  //  Copyright © 2018年 EliteShow. All rights reserved.
+//  //  Copyright © 2018年 Wt.Yip. All rights reserved.
 //
 
-#import "YHCountButton.h"
+#import "WTCountButton.h"
 #import "UIImage+Category.h"
 
-@interface YHCountButton()
+@interface WTCountButton()
 
 @property (nonatomic, strong) YHCountButtonStyle *style;
 
 @end
 
-@implementation YHCountButton
+@implementation WTCountButton
 
 + (instancetype)countBtn
 {
-    return [[YHCountButton alloc] initWithStyle:[YHCountButtonStyle defaultStyle]];
+    return [[WTCountButton alloc] initWithStyle:[YHCountButtonStyle defaultStyle]];
 }
 
 - (instancetype)initWithStyle:(YHCountButtonStyle *)style
 {
-    self = [super initWithImagePosition:YHButtonText andMargin:0];
+    self = [super initWithImagePosition:WTButtonText andMargin:0];
     if (self) {
         self.style = style;
         [self setTitle:self.style.normalTitle forState:UIControlStateNormal];

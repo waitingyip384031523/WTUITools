@@ -37,67 +37,67 @@ TODO: Add long description of the pod here.
   }
   
   s.subspec 'BadgeView' do |bdgView|
-      bdgView.source_files = 'WTUITools/Classes/BadgeView/*.{h,m}'
+      bdgView.source_files = 'WTUITools/Classes/BadgeView/**/*.{h,m}'
   end
   
   s.subspec 'CALayer' do |caLayer|
-      caLayer.source_files = 'WTUITools/Classes/CALayer/*.{h,m}'
+      caLayer.source_files = 'WTUITools/Classes/CALayer/**/*.{h,m}'
   end
   
   s.subspec 'ChatMessageView' do |cmView|
-      cmView.source_files = 'WTUITools/Classes/ChatMessageView/*.{h,m}'
+      cmView.source_files = 'WTUITools/Classes/ChatMessageView/**/*.{h,m}'
   end
   
   s.subspec 'FlowLayout' do |fl|
-      fl.source_files = 'WTUITools/Classes/FlowLayout/*.{h,m}'
+      fl.source_files = 'WTUITools/Classes/FlowLayout/**/*.{h,m}'
   end
   
   s.subspec 'TagView' do |tg|
-      tg.source_files = 'WTUITools/Classes/TagView/*.{h,m}'
+      tg.source_files = 'WTUITools/Classes/TagView/**/*.{h,m}'
   end
   
   s.subspec 'UIAlertController' do |alertController|
-      alertController.source_files = 'WTUITools/Classes/UIAlertController/*.{h,m}'
+      alertController.source_files = 'WTUITools/Classes/UIAlertController/**/*.{h,m}'
   end
   
   s.subspec 'UIButton' do |button|
-      button.source_files = 'WTUITools/Classes/UIButton/*.{h,m}'
+      button.source_files = 'WTUITools/Classes/UIButton/**/*.{h,m}'
   end
   
   s.subspec 'UIColor' do |color|
-      color.source_files = 'WTUITools/Classes/UIColor/*.{h,m}'
+      color.source_files = 'WTUITools/Classes/UIColor/**/*.{h,m}'
   end
   
   s.subspec 'UIImage' do |image|
-      image.source_files = 'WTUITools/Classes/UIImage/*.{h,m}'
+      image.source_files = 'WTUITools/Classes/UIImage/**/*.{h,m}'
   end
   
   s.subspec 'UILabel' do |label|
-      label.source_files = 'WTUITools/Classes/UILabel/*.{h,m}'
+      label.source_files = 'WTUITools/Classes/UILabel/**/*.{h,m}'
   end
   
   s.subspec 'UINavigationbar' do |nav|
-      nav.source_files = 'WTUITools/Classes/UINavigationbar/*.{h,m}'
+      nav.source_files = 'WTUITools/Classes/UINavigationbar/**/*.{h,m}'
   end
   
   s.subspec 'UITabbarViewController' do |tb|
-      tb.source_files = 'WTUITools/Classes/UITabbarViewController/*.{h,m}'
+      tb.source_files = 'WTUITools/Classes/UITabbarViewController/**/*.{h,m}'
   end
   
   s.subspec 'UITableViewIndex' do |tbi|
-      tbi.source_files = 'WTUITools/Classes/UITableViewIndex/*.{h,m}'
+      tbi.source_files = 'WTUITools/Classes/UITableViewIndex/**/*.{h,m}'
   end
   
   s.subspec 'UITextView' do |textView|
-      textView.source_files = 'WTUITools/Classes/UITextView/*.{h,m}'
+      textView.source_files = 'WTUITools/Classes/UITextView/**/*.{h,m}'
   end
   
   s.subspec 'UIView' do |view|
-      view.source_files = 'WTUITools/Classes/UIView/*.{h,m}'
+      view.source_files = 'WTUITools/Classes/UIView/**/*.{h,m}'
   end
   
   s.subspec 'UIWindow' do |window|
-      window.source_files = 'WTUITools/Classes/UIWindow/*.{h,m}'
+      window.source_files = 'WTUITools/Classes/UIWindow/**/*.{h,m}'
   end
 
   # s.public_header_files = 'Pod/Classes/**/*.h'

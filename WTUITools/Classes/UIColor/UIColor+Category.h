@@ -14,6 +14,8 @@
 
 + (UIColor *)colorWithR:(CGFloat)red G:(CGFloat)green B:(CGFloat)blue A:(CGFloat)alpha;
 
++ (UIColor *)hexColor:(int)hex;
+
 #pragma mark - 预设颜色,以供方便使用
 + (instancetype)infoBlueColor;
 + (instancetype)successColor;

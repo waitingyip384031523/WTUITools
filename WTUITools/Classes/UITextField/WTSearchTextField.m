@@ -3,7 +3,7 @@
 //  EliteShow
 //
 //  Created by PENG TAO on 2018/11/1.
-//  Copyright © 2018年 Elite Show. All rights reserved.
+//  Copyright � 2018年 Elite Show. All rights reserved.
 //
 
 #import "WTSearchTextField.h"
@@ -43,6 +43,11 @@
         [self.clearBtn setImage:[UIImage bundleImageNamed:@"main_search_clear_img" inObject:self] forState:UIControlStateNormal];
         [self.clearBtn sizeToFit];
         self.clearBtn.width += 15;
+        UIView *rightV = [[UIView alloc] init];
+        rightV.size = self.clearBtn.size;
+        rightV.width += 15.f;
+        self.clearBtn.center = CGPointMake(rightV.width / 2, rightV.height / 2);
+        [rightV addSubview:self.clearBtn];
         self.showClearBtn = NO;
         @weakify(self)
         [[[self.clearBtn rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:self.rac_willDeallocSignal] subscribeNext:^(__kindof UIControl * _Nullable x) {
@@ -54,7 +59,7 @@
             }
         }];
         self.rightViewMode = UITextFieldViewModeAlways;
-        self.rightView = self.clearBtn;
+        self.rightView = rightV;
         self.layer.cornerRadius = 35.f / 2;
         self.layer.masksToBounds = YES;
     }

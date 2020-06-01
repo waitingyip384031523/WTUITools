@@ -20,7 +20,7 @@
     if (self) {
         self.textColor = [UIColor whiteColor];
         self.font = [UIFont systemFontOfSize:15];
-        UIImageView *imgV = [[UIImageView alloc] initWithImage:[UIImage bundleImageNamed:@"main_search_img" inObject:self]];
+        UIImageView *imgV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"main_search_img"]];
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, imgV.image.size.width + 12 + 8, 35.f)];
         [view addSubview:imgV];
         imgV.left = 12;
@@ -40,7 +40,7 @@
 //        [btn setImage:ImageNamed(@"main_search_clear_img") forState:UIControlStateNormal];
 //        [btn setBackgroundColor:SECTION_TITLE_C];
         self.clearBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self.clearBtn setImage:[UIImage bundleImageNamed:@"main_search_clear_img" inObject:self] forState:UIControlStateNormal];
+        [self.clearBtn setImage:[UIImage imageNamed:@"main_search_clear_img"] forState:UIControlStateNormal];
         [self.clearBtn sizeToFit];
         self.clearBtn.width += 15;
         UIView *rightV = [[UIView alloc] init];

@@ -30,8 +30,8 @@
         [self setTitle:self.style.normalTitle forState:UIControlStateNormal];
         [self setTitleColor:self.style.normalFontColor forState:UIControlStateNormal];
         [self.titleLabel setFont:self.style.font];
-        [self setBackgroundImage:[[UIImage imageWithColor:[UIColor clearColor]] createImageSize:CGSizeMake(85.f, self.style.cornerRadius * 2) gradientColors:@[[UIColor colorWithRed:48.0 green:208.0 blue:214.0 alpha:1],[UIColor colorWithRed:47.0 green:233.0 blue:213.0 alpha:1]] percentage:@[@(0), @(1)] gradientType:GradientFromLeftTopToRightBottom] forState:UIControlStateNormal];
-        [self setBackgroundImage:[UIImage imageWithColor:self.style.countBgColor] forState:UIControlStateDisabled];
+//        [self setBackgroundImage:[[UIImage imageWithColor:[UIColor clearColor]] createImageSize:CGSizeMake(85.f, self.style.cornerRadius * 2) gradientColors:@[[UIColor colorWithRed:48.0 green:208.0 blue:214.0 alpha:1],[UIColor colorWithRed:47.0 green:233.0 blue:213.0 alpha:1]] percentage:@[@(0), @(1)] gradientType:GradientFromLeftTopToRightBottom] forState:UIControlStateNormal];
+//        [self setBackgroundImage:[UIImage imageWithColor:self.style.countBgColor] forState:UIControlStateDisabled];
         [self setTitleColor:self.style.countFontColor forState:UIControlStateDisabled];
         self.layer.masksToBounds = YES;
         self.layer.cornerRadius = self.style.cornerRadius;

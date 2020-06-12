@@ -6,8 +6,6 @@
 //  Copyright © 2017年 TaxiGoMac02. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 typedef enum : NSUInteger {
     GradientFromTopToBottom,
     GradientFromLeftToRight,
@@ -84,26 +82,22 @@ typedef enum : NSUInteger {
 + (UIImage *) getVideoPreViewImage:(NSURL *)path;
 + (UIImage *) imageCompressForWidthScale:(UIImage *)sourceImage targetWidth:(CGFloat)defineWidth;
 + (UIImage *) imageCompressFitSizeScale:(UIImage *)sourceImage targetSize:(CGSize)size;
-+ (UIImage *) gradientImageWithBounds:(CGRect)bounds andColors:(NSArray*)colors andGradientType:(int)gradientType;
 - (UIImage *)changeImageColor:(UIColor *)color;
-
-+ (UIImage *)imageNamed:(NSString *)name ofBundle:(NSString *)bundleName;
 + (CGSize)getImageSizeWithURL:(id)URL;
-+ (UIImage *_Nonnull)fixOrientation:(UIImage *_Nonnull)image;
 - (UIImage *)imageRotatedByRadians:(CGFloat)radians;
 - (UIImage*)rotate:(UIImageOrientation)orient;
 // 创建一张渐变色图片
-- (UIImage *)createImageSize:(CGSize)imageSize
++ (UIImage *)createImageSize:(CGSize)imageSize
               gradientColors:(NSArray *)colors
                   percentage:(NSArray *)percents
                 gradientType:(GradientType)gradientType;
++ (UIImage *)createImageSize:(CGSize)imageSize
+              gradientColors:(NSArray *)colors
+                  percentage:(NSArray *)percents
+                  startPoint:(CGPoint)startPoint
+                    endPoint:(CGPoint)endPoint;
 - (UIImage *)capImgCorner:(CGFloat)cornerRadius
                    corner:(UIRectCorner)corner;
-- (void)my_ImageWithSize:(CGSize)size fillColor:(UIColor *)fillColor cornerRadio:(CGFloat)cornerRadio completion:(void (^)(UIImage *))completion;
-+ (UIImage *)getSendBubbleImage;
-+ (UIImage *)getReciveBubbleImg;
-+ (UIImage *)getCurrentDotImg;
-+ (UIImage *)getNormalDot;
 + (UIImage *)bundleImageNamed:(NSString *)name inObject:(id)object;
 
 @end

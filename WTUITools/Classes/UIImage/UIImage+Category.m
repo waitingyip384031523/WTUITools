@@ -60,11 +60,12 @@ void ProviderReleaseData (void *info, const void *data, size_t size)
 }
 
 // 创建一张渐变色图片
-- (UIImage *)createImageSize:(CGSize)imageSize
++ (UIImage *)createImageSize:(CGSize)imageSize
               gradientColors:(NSArray *)colors
                   percentage:(NSArray *)percents
-                gradientType:(GradientType)gradientType {
-    
+                  startPoint:(CGPoint)startPoint
+                    endPoint:(CGPoint)endPoint
+{
     NSAssert(percents.count <= 5, @"输入颜色数量过多，如果需求数量过大，请修改locations[]数组的个数");
     
     NSMutableArray *ar = [NSMutableArray array];
@@ -84,6 +85,20 @@ void ProviderReleaseData (void *info, const void *data, size_t size)
     CGContextSaveGState(context);
     CGColorSpaceRef colorSpace = CGColorGetColorSpace([[colors lastObject] CGColor]);
     CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (CFArrayRef)ar, locations);
+    CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    CGGradientRelease(gradient);
+    CGContextRestoreGState(context);
+    CGColorSpaceRelease(colorSpace);
+    UIGraphicsEndImageContext();
+    return image;
+}
+
++ (UIImage *)createImageSize:(CGSize)imageSize
+              gradientColors:(NSArray *)colors
+                  percentage:(NSArray *)percents
+                gradientType:(GradientType)gradientType {
+    
     CGPoint start;
     CGPoint end;
     switch (gradientType) {
@@ -106,13 +121,7 @@ void ProviderReleaseData (void *info, const void *data, size_t size)
         default:
             break;
     }
-    CGContextDrawLinearGradient(context, gradient, start, end, kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    CGGradientRelease(gradient);
-    CGContextRestoreGState(context);
-    CGColorSpaceRelease(colorSpace);
-    UIGraphicsEndImageContext();
-    return image;
+    return [UIImage createImageSize:imageSize gradientColors:colors percentage:percents startPoint:start endPoint:end];
 }
 
 /**
@@ -1030,58 +1039,6 @@ void ProviderReleaseData (void *info, const void *data, size_t size)
 }
 
 /**
- *  获取矩形的渐变色的UIImage(此函数还不够完善)
- *
- *  @param bounds       UIImage的bounds
- *  @param colors       渐变色数组，可以设置两种颜色
- *  @param gradientType 渐变的方式：0--->从上到下   1--->从左到右
- *
- *  @return 渐变色的UIImage
- */
-+ (UIImage*)gradientImageWithBounds:(CGRect)bounds andColors:(NSArray*)colors andGradientType:(int)gradientType{
-    NSMutableArray *ar = [NSMutableArray array];
-    
-    for(UIColor *c in colors) {
-        [ar addObject:(id)c.CGColor];
-    }
-    UIGraphicsBeginImageContextWithOptions(bounds.size, YES, 1);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSaveGState(context);
-    CGColorSpaceRef colorSpace = CGColorGetColorSpace([[colors lastObject] CGColor]);
-    CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (CFArrayRef)ar, NULL);
-    CGMutablePathRef path = CGPathCreateMutable();
-    
-    //绘制Path
-    CGRect rect = bounds;
-    CGPathMoveToPoint(path, NULL, CGRectGetMinX(rect), CGRectGetMinY(rect));
-    CGPathAddLineToPoint(path, NULL, CGRectGetMaxX(rect), CGRectGetMinY(rect));
-    CGPathAddLineToPoint(path, NULL, CGRectGetMaxX(rect), CGRectGetMaxY(rect));
-    CGPathAddLineToPoint(path, NULL, CGRectGetMinX(rect), CGRectGetMaxY(rect));
-    CGPathCloseSubpath(path);
-    CGRect pathRect = CGPathGetBoundingBox(path);
-    CGPoint startPoint = CGPointMake(CGRectGetMinX(pathRect), CGRectGetMidY(pathRect));
-    CGPoint endPoint = CGPointMake(CGRectGetMaxX(pathRect), CGRectGetMidY(pathRect));
-    CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
-    CGPathRelease(path);
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    CGGradientRelease(gradient);
-    CGContextRestoreGState(context);
-    CGColorSpaceRelease(colorSpace);
-    UIGraphicsEndImageContext();
-    return image;
-}
-
-+ (UIImage *)imageNamed:(NSString *)name ofBundle:(NSString *)bundleName {
-    UIImage *image = nil;
-    NSString *image_name = [NSString stringWithFormat:@"%@.png", name];
-    NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
-    NSString *bundlePath = [resourcePath stringByAppendingPathComponent:bundleName];
-    NSString *image_path = [bundlePath stringByAppendingPathComponent:image_name];;
-    image = [[UIImage alloc] initWithContentsOfFile:image_path];
-    return image;
-}
-
-/**
  *  根据图片url获取网络图片尺寸
  */
 + (CGSize)getImageSizeWithURL:(id)URL{
@@ -1153,72 +1110,6 @@ void ProviderReleaseData (void *info, const void *data, size_t size)
         CFRelease(imageSourceRef);
     }
     return CGSizeMake(width, height);
-}
-
-+(UIImage *_Nonnull)fixOrientation:(UIImage *_Nonnull)image{
-    if (image.imageOrientation == UIImageOrientationUp)
-        return image;
-    CGAffineTransform transform = CGAffineTransformIdentity;
-    
-    switch (image.imageOrientation) {
-        case UIImageOrientationDown:
-        case UIImageOrientationDownMirrored:
-            transform = CGAffineTransformTranslate(transform, image.size.width, image.size.height);
-            transform = CGAffineTransformRotate(transform, M_PI);
-            break;
-            
-        case UIImageOrientationLeft:
-        case UIImageOrientationLeftMirrored:
-            transform = CGAffineTransformTranslate(transform, image.size.width, 0);
-            transform = CGAffineTransformRotate(transform, M_PI_2);
-            break;
-            
-        case UIImageOrientationRight:
-        case UIImageOrientationRightMirrored:
-            transform = CGAffineTransformTranslate(transform, 0, image.size.height);
-            transform = CGAffineTransformRotate(transform, -M_PI_2);
-            break;
-        default:
-            break;
-    }
-    switch (image.imageOrientation) {
-        case UIImageOrientationUpMirrored:
-        case UIImageOrientationDownMirrored:
-            transform = CGAffineTransformTranslate(transform, image.size.width, 0);
-            transform = CGAffineTransformScale(transform, -1, 1);
-            break;
-            
-        case UIImageOrientationLeftMirrored:
-        case UIImageOrientationRightMirrored:
-            transform = CGAffineTransformTranslate(transform, image.size.height, 0);
-            transform = CGAffineTransformScale(transform, -1, 1);
-            break;
-        default:
-            break;
-    }
-    CGContextRef ctx = CGBitmapContextCreate(NULL, image.size.width, image.size.height,
-                                             CGImageGetBitsPerComponent(image.CGImage), 0,
-                                             CGImageGetColorSpace(image.CGImage),
-                                             CGImageGetBitmapInfo(image.CGImage));
-    CGContextConcatCTM(ctx, transform);
-    switch (image.imageOrientation) {
-        case UIImageOrientationLeft:
-        case UIImageOrientationLeftMirrored:
-        case UIImageOrientationRight:
-        case UIImageOrientationRightMirrored:
-            // Grr...
-            CGContextDrawImage(ctx, CGRectMake(0,0,image.size.height,image.size.width), image.CGImage);
-            break;
-            
-        default:
-            CGContextDrawImage(ctx, CGRectMake(0,0,image.size.width,image.size.height), image.CGImage);
-            break;
-    }
-    CGImageRef cgimg = CGBitmapContextCreateImage(ctx);
-    UIImage *img = [UIImage imageWithCGImage:cgimg];
-    CGContextRelease(ctx);
-    CGImageRelease(cgimg);
-    return img;
 }
 
 /** 将图片旋转弧度radians */
@@ -1344,31 +1235,6 @@ void ProviderReleaseData (void *info, const void *data, size_t size)
     return copy;
 }
 
-- (void)my_ImageWithSize:(CGSize)size fillColor:(UIColor *)fillColor cornerRadio:(CGFloat)cornerRadio completion:(void (^)(UIImage *))completion{
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        UIGraphicsBeginImageContextWithOptions(size, YES, [UIScreen mainScreen].scale);
-        CGSize aspectFitSize = size;
-        CGRect rect = CGRectMake(0, 0, aspectFitSize.width+0.3, aspectFitSize.height+0.3);
-        [fillColor setFill];
-        UIRectFill(rect);
-        if (cornerRadio != 0) {
-            UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, aspectFitSize.width, aspectFitSize.height) byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(10, 10)];
-            [path addClip];
-        }
-        [self drawInRect:rect];
-        UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (completion != nil) {
-                if (result) {
-                    completion(result);
-                }
-            }
-        });
-    });
-}
-
 - (UIImage *)clipImgInRect:(CGRect)rect
 {
     //将UIImage转换成CGImageRef
@@ -1386,111 +1252,6 @@ void ProviderReleaseData (void *info, const void *data, size_t size)
     
     //返回剪裁后的图片
     return newImage;
-}
-
-static UIImage *receiveBubbleImg = nil;
-
-+ (UIImage *)getReciveBubbleImg
-{
-    if (!receiveBubbleImg) {
-        CGFloat width = 101.f;
-        CGFloat height = 81.f;
-        CGSize size = CGSizeMake(width, height);
-        UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
-        UIBezierPath *path = [UIBezierPath bezierPath];
-
-        [path moveToPoint:CGPointMake(0, SMALL_CORNER)];
-        [path addQuadCurveToPoint:CGPointMake(SMALL_CORNER, 0) controlPoint:CGPointMake(0, 0)];
-        [path addLineToPoint:CGPointMake(width - BUBBLE_CORNER, 0)];
-        [path addQuadCurveToPoint:CGPointMake(width, BUBBLE_CORNER) controlPoint:CGPointMake(width, 0)];
-        [path addLineToPoint:CGPointMake(width, height - BUBBLE_CORNER)];
-        [path addQuadCurveToPoint:CGPointMake(width - BUBBLE_CORNER, height) controlPoint:CGPointMake(width, height)];
-        [path addLineToPoint:CGPointMake(BUBBLE_CORNER, height)];
-        [path addQuadCurveToPoint:CGPointMake(0, height - BUBBLE_CORNER) controlPoint:CGPointMake(0, height)];
-        [path closePath];
-        
-        [[UIColor colorWithRed:242.f green:248.f blue:249.f alpha:1.f] setFill];
-        [path fill];
-
-        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        receiveBubbleImg = [image resizableImageWithCapInsets:UIEdgeInsetsMake(16, 16, 16, 16) resizingMode:UIImageResizingModeStretch];
-    }
-    return receiveBubbleImg;
-}
-
-static UIImage *sendBubbleImg = nil;
-
-+ (UIImage *)getSendBubbleImage
-{
-    if (!sendBubbleImg) {
-        CGFloat width = 101.f;
-        CGFloat height = 81.f;
-        CGSize size = CGSizeMake(width, height);
-        UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
-        UIBezierPath *path = [UIBezierPath bezierPath];
-
-        [path moveToPoint:CGPointMake(0, BUBBLE_CORNER)];
-        [path addQuadCurveToPoint:CGPointMake(BUBBLE_CORNER, 0) controlPoint:CGPointMake(0, 0)];
-        [path addLineToPoint:CGPointMake(width - SMALL_CORNER, 0)];
-        [path addQuadCurveToPoint:CGPointMake(width, SMALL_CORNER) controlPoint:CGPointMake(width, 0)];
-        [path addLineToPoint:CGPointMake(width, height - BUBBLE_CORNER)];
-        [path addQuadCurveToPoint:CGPointMake(width - BUBBLE_CORNER, height) controlPoint:CGPointMake(width, height)];
-        [path addLineToPoint:CGPointMake(BUBBLE_CORNER, height)];
-        [path addQuadCurveToPoint:CGPointMake(0, height - BUBBLE_CORNER) controlPoint:CGPointMake(0, height)];
-        [path closePath];
-        [[UIColor colorWithRed:38.f green:205.f blue:203.f alpha:1.0] setFill];
-        [path fill];
-
-        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        sendBubbleImg = [image resizableImageWithCapInsets:UIEdgeInsetsMake(16, 16, 16, 16) resizingMode:UIImageResizingModeStretch];
-    }
-    return sendBubbleImg;
-}
-
-static UIImage *curDotImg = nil;
-
-+ (UIImage *)getCurrentDotImg
-{
-    if (!curDotImg) {
-        CGFloat w = 15.f;
-        CGFloat h = 5.f;
-        CGSize size = CGSizeMake(w, h);
-        UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
-
-        UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, w, h) cornerRadius:h / 2];
-        [path closePath];
-        [[UIColor colorWithRed:38.f green:205.f blue:203.f alpha:1.0] setFill];
-        [path fill];
-
-        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        curDotImg = image;
-    }
-    return curDotImg;
-}
-
-static UIImage *normalDot = nil;
-
-+ (UIImage *)getNormalDot
-{
-    if (!normalDot) {
-        CGFloat wh = 5.f;
-        CGSize size = CGSizeMake(wh, wh);
-        UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
-        
-        UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, wh, wh) cornerRadius:wh / 2];
-        [path closePath];
-        
-        [[UIColor colorWithRed:188.f green:207.f blue:204.f alpha:1.0] setFill];
-        [path fill];
-        
-        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        normalDot = image;
-    }
-    return normalDot;
 }
 
 /** 交换宽和高 */

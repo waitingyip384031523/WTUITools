@@ -44,13 +44,13 @@
     return view;
 }
 
-- (void)filletCornerRadius:(CGFloat)cornerRadius
-               shadowColor:(UIColor *)shadowColor
-              shadowOffset:(CGSize)shadowOffset
-              shadowRadius:(CGFloat)shadowRadius
-             shadowOpacity:(CGFloat)shadowOpacity
-                 fillColor:(UIColor *)fillColor
-               rectCorners:(UIRectCorner)rectCorner
+- (CAShapeLayer *)filletCornerRadius:(CGFloat)cornerRadius
+                         shadowColor:(UIColor *)shadowColor
+                        shadowOffset:(CGSize)shadowOffset
+                        shadowRadius:(CGFloat)shadowRadius
+                       shadowOpacity:(CGFloat)shadowOpacity
+                           fillColor:(UIColor *)fillColor
+                         rectCorners:(UIRectCorner)rectCorner
 {
     CAShapeLayer *subLayer=[CAShapeLayer layer];
     CGRect fixframe = self.bounds;
@@ -63,6 +63,7 @@
     subLayer.shadowOpacity = shadowOpacity;
     subLayer.shadowRadius = shadowRadius;
     [self.layer insertSublayer:subLayer below:self.layer];
+    return subLayer;
 }
 
 @end

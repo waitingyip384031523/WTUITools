@@ -23,13 +23,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (UIView *)viewWithFilletCornerRadius:(CGFloat)cornerRadius borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor shadowColor:(UIColor *)shadowColor shadowOffset:(CGSize)shadowOffset shadowRadius:(CGFloat)shadowRadius shadowOpacity:(CGFloat)shadowOpacity;
 
-- (void)filletCornerRadius:(CGFloat)cornerRadius
-               shadowColor:(UIColor *)shadowColor
-              shadowOffset:(CGSize)shadowOffset
-              shadowRadius:(CGFloat)shadowRadius
-             shadowOpacity:(CGFloat)shadowOpacity
-                 fillColor:(UIColor *)fillColor
-               rectCorners:(UIRectCorner)rectCorner;
+- (CAShapeLayer *)filletCornerRadius:(CGFloat)cornerRadius
+                         shadowColor:(UIColor *)shadowColor
+                        shadowOffset:(CGSize)shadowOffset
+                        shadowRadius:(CGFloat)shadowRadius
+                       shadowOpacity:(CGFloat)shadowOpacity
+                           fillColor:(UIColor *)fillColor
+                         rectCorners:(UIRectCorner)rectCorner;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -59,12 +59,22 @@ void ProviderReleaseData (void *info, const void *data, size_t size)
     return image;
 }
 
++ (UIImage *)createImageSize:(CGSize)imageSize
+              gradientColors:(NSArray *)colors
+                  percentage:(NSArray *)percents
+                  startPoint:(CGPoint)startPoint
+                    endPoint:(CGPoint)endPoint
+{
+    return [self createImageSize:imageSize gradientColors:colors percentage:percents startPoint:startPoint endPoint:endPoint opaque:YES];
+}
+
 // 创建一张渐变色图片
 + (UIImage *)createImageSize:(CGSize)imageSize
               gradientColors:(NSArray *)colors
                   percentage:(NSArray *)percents
                   startPoint:(CGPoint)startPoint
                     endPoint:(CGPoint)endPoint
+                      opaque:(BOOL)opaque
 {
     NSAssert(percents.count <= 5, @"输入颜色数量过多，如果需求数量过大，请修改locations[]数组的个数");
     
@@ -80,7 +90,7 @@ void ProviderReleaseData (void *info, const void *data, size_t size)
         locations[i] = [percents[i] floatValue];
     }
     
-    UIGraphicsBeginImageContextWithOptions(imageSize, YES, 1);
+    UIGraphicsBeginImageContextWithOptions(imageSize, opaque, 1);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSaveGState(context);
     CGColorSpaceRef colorSpace = CGColorGetColorSpace([[colors lastObject] CGColor]);

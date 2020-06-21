@@ -96,6 +96,12 @@ typedef enum : NSUInteger {
                   percentage:(NSArray *)percents
                   startPoint:(CGPoint)startPoint
                     endPoint:(CGPoint)endPoint;
++ (UIImage *)createImageSize:(CGSize)imageSize
+              gradientColors:(NSArray *)colors
+                  percentage:(NSArray *)percents
+                  startPoint:(CGPoint)startPoint
+                    endPoint:(CGPoint)endPoint
+                      opaque:(BOOL)opaque;
 - (UIImage *)capImgCorner:(CGFloat)cornerRadius
                    corner:(UIRectCorner)corner;
 + (UIImage *)bundleImageNamed:(NSString *)name inObject:(id)object;

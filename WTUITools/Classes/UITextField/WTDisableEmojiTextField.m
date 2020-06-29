@@ -28,13 +28,13 @@
             @strongify(self)
             UITextRange *selectedRange = [self markedTextRange];
             UITextPosition *position = [self positionFromPosition:selectedRange.start offset:0];
-            if (!position && !self.emoji) {
+            if (!self.emoji) {
                 if ([NSString stringContainsEmoji:x]) {
                     self.text = [NSString disable_emoji:x];
                 }
             }
             if (!self.noSp) {
-                NSString *s = @"@～！#¥%…&*（）——+「」|：“《》？【】、；‘，。/~!$^()_+{}|:\"<>?-=[]\\;',/€£¥•⋯、！ ➋➌➍➎➏➐➑➒";
+                NSString *s = @"@～！#¥%…&*（）+「」|：“《》？【】、；‘，。/~!$^()_+{}|:\"<>?-=[]\\;',/€£¥•⋯、！ ➋➌➍➎➏➐➑➒";
                 if (!self.noDot) {
                     s = [s stringByAppendingString:@"."];
                 }
@@ -51,23 +51,22 @@
                     if ([s containsString:@"_"]) {
                         s = [s stringByReplacingOccurrencesOfString:@"_" withString:@""];
                     }
-                    if (x.length == 1) {
-                        if (![NSString isABC:x]) {
-                            self.text = @"";
-                        }
-                    }
+//                    if (x.length == 1) {
+//                        if (![NSString isABC:x]) {
+//                            self.text = @"";
+//                        }
+//                    }
                 }
                 if (self.noChinese) {
-                    NSString *str = @"";
+                    NSString *str = self.text;
                     for(int i=0; i< [x length];i++){
-                        NSRange range =NSMakeRange(i, 1);
+                        NSRange range = NSMakeRange(i, 1);
                         NSString *strFromSubStr = [x substringWithRange:range];
-                        const char *cStringFromstr = [strFromSubStr UTF8String];
-                        if (strlen(cStringFromstr) == 3) {
+                        if ([self isChinese:strFromSubStr]) {
                             //汉字
-                        } else if (strlen(cStringFromstr)==1) {
+                            str = [str stringByReplacingOccurrencesOfString:strFromSubStr withString:@""];
+                        } else {
                             //字母
-                            str = [str stringByAppendingString:strFromSubStr];
                         }
                     }
                     self.text = str;
@@ -79,11 +78,11 @@
                     if ([s containsString:@"_"]) {
                         s = [s stringByReplacingOccurrencesOfString:@"_" withString:@""];
                     }
-                    if (x.length == 1) {
-                        if (![NSString isABC:x]) {
-                            self.text = @"";
-                        }
-                    }
+//                    if (x.length == 1) {
+//                        if (![NSString isABC:x]) {
+//                            self.text = @"";
+//                        }
+//                    }
                 }
                 if (self.haveBlank) {
                     s = [s stringByReplacingOccurrencesOfString:@" " withString:@""];
@@ -148,6 +147,13 @@
     return self;
 }
 
+- (BOOL)isChinese:(NSString *)str
+{
+    NSString *match = @"(^[\u4e00-\u9fa5]+$)";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF matches %@", match];
+    return [predicate evaluateWithObject:str];
+}
+
 - (void)setShowClearBtn:(BOOL)showClearBtn
 {
     _showClearBtn = showClearBtn;
@@ -163,7 +169,7 @@
     if (self.isFirstResponder && !position) {
         if (!self.noSp) {
             NSString *tem = [[string componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]componentsJoinedByString:@""];
-            NSString *s = @"～！@#¥%…&*（）——+「」|：“《》？【】、；‘，。/~!$^()_+{}|:\"<>?-=[]\\;',/€£¥•⋯、！ ";
+            NSString *s = @"～！@#¥%…&*（）+「」|：“《》？【】、；‘，。/~!$^()_+{}|:\"<>?-=[]\\;',/€£¥•⋯、！ ";
             if (!self.noDot) {
                 s = [s stringByAppendingString:@"."];
             }
@@ -192,19 +198,8 @@
                     s = [s stringByReplacingOccurrencesOfString:@"_" withString:@""];
                 }
             }
-            if (self.noChinese) {
-                for(int i=0; i< [string length];i++){
-                    NSRange range =NSMakeRange(i, 1);
-                    NSString * strFromSubStr = [string substringWithRange:range];
-                    const char *cStringFromstr = [strFromSubStr UTF8String];
-                    if (strlen(cStringFromstr) == 3) {
-                        //汉字
-                        return NO;
-                    } else if (strlen(cStringFromstr)==1) {
-                        //字母
-                        return YES;
-                    }
-                }
+            if (self.noChinese && [self isChinese:string]) {
+                return NO;
             }
             if (self.haveBlank) {
                 s = [s stringByReplacingOccurrencesOfString:@" " withString:@""];

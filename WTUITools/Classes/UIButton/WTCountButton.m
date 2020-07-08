@@ -57,25 +57,26 @@
     
     dispatch_source_set_timer(_timer, dispatch_walltime(NULL, 0), 1.0*NSEC_PER_SEC, 0);
     NSDate *endTime = [NSDate dateWithTimeIntervalSinceNow:time];
+    __weak typeof(self) weakSelf = self;
     dispatch_source_set_event_handler(_timer, ^{
         int seconds = [endTime timeIntervalSinceNow];
-        if (seconds <= 0) {
+        if (seconds <= 0 || weakSelf == nil) {
             dispatch_source_cancel(_timer);
             dispatch_async(dispatch_get_main_queue(), ^{
 //                [self setBackgroundImage:[UIImage imageWithColor:self.style.normalBgColor] forState:UIControlStateNormal];
 //                [self setTitleColor:self.style.normalFontColor forState:UIControlStateNormal];
-                [self setTitle:self.style.unSelectTitle forState:UIControlStateNormal];
-                self.enabled = YES;
-                self.isCounting = NO;
+                [weakSelf setTitle:weakSelf.style.unSelectTitle forState:UIControlStateNormal];
+                weakSelf.enabled = YES;
+                weakSelf.isCounting = NO;
             });
         }else{
             dispatch_async(dispatch_get_main_queue(), ^{
 //                [self setBackgroundImage:[UIImage imageWithColor:self.style.countBgColor] forState:UIControlStateNormal];
 //                [self setTitleColor:self.style.normalFontColor forState:UIControlStateNormal];
-                [self setTitle:[NSString stringWithFormat:@"%d%@",seconds,self.style.holderString] forState:UIControlStateNormal];
-                [self.titleLabel setText:[NSString stringWithFormat:@"%d",seconds]];
-                self.enabled = NO;
-                self.isCounting = YES;
+                [weakSelf setTitle:[NSString stringWithFormat:@"%d%@",seconds,weakSelf.style.holderString] forState:UIControlStateNormal];
+                [weakSelf.titleLabel setText:[NSString stringWithFormat:@"%d",seconds]];
+                weakSelf.enabled = NO;
+                weakSelf.isCounting = YES;
             });
         }
     });

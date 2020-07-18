@@ -59,7 +59,7 @@
     __weak typeof(WTDisableEmojiTextViewDelegate) *weakDelegate = self.eDelegate;
     self.delegate = (id<UITextViewDelegate>)weakDelegate;
     @weakify(self)
-    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UITextViewTextDidChangeNotification object:nil] subscribeNext:^(NSNotification * _Nullable x) {
+    [[[[NSNotificationCenter defaultCenter] rac_addObserverForName:UITextViewTextDidChangeNotification object:nil] takeUntil:self.rac_willDeallocSignal] subscribeNext:^(NSNotification * _Nullable x) {
         @strongify(self)
         UITextRange *selectedRange = [self markedTextRange];
         UITextPosition *position = [self positionFromPosition:selectedRange.start offset:0];

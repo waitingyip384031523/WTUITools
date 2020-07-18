@@ -24,7 +24,7 @@
         self.isPhone = NO;
         self.maxTextLength = 0;
         @weakify(self)
-        [self.rac_textSignal subscribeNext:^(NSString * _Nullable x) {
+        [[self.rac_textSignal takeUntil:self.rac_willDeallocSignal] subscribeNext:^(NSString * _Nullable x) {
             @strongify(self)
             UITextRange *selectedRange = [self markedTextRange];
             UITextPosition *position = [self positionFromPosition:selectedRange.start offset:0];

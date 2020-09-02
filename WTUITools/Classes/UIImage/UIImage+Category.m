@@ -142,7 +142,7 @@ void ProviderReleaseData (void *info, const void *data, size_t size)
  */
 + (UIImage *)normalSnapshotImage
 {
-    UIWindow *screenWindow = [[UIApplication sharedApplication] keyWindow];
+    UIWindow *screenWindow = [[[UIApplication sharedApplication] delegate] window];
     UIGraphicsBeginImageContext(screenWindow.frame.size);
     [screenWindow.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *viewImage =UIGraphicsGetImageFromCurrentImageContext();

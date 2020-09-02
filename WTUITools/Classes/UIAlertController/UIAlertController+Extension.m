@@ -13,7 +13,7 @@
 
 -(void)tapGesAlert
 {
-    NSArray * arrayViews = [UIApplication sharedApplication].keyWindow.subviews;
+    NSArray * arrayViews = [UIApplication sharedApplication].delegate.window.subviews;
     if (arrayViews.count>0) {
         //array会有两个对象，一个是UILayoutContainerView，另外一个是UITransitionView，我们找到最后一个
         UIView * backView = arrayViews.lastObject;
